@@ -85,4 +85,18 @@ orbitBtn.MouseButton1Click:Connect(function()
 
     task.spawn(function()
         while orbiting do
-            if selectedPlayer and
+            if selectedPlayer and selectedPlayer.Character then
+                local target = selectedPlayer.Character:FindFirstChild("HumanoidRootPart")
+                if target and hrp then
+                    local t = tick()
+                    local radius = 5
+                    local x = math.cos(t*3)*radius
+                    local z = math.sin(t*3)*radius
+
+                    hrp.CFrame = target.CFrame * CFrame.new(x,2,z)
+                end
+            end
+            task.wait()
+        end
+    end)
+end)
